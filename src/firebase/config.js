@@ -1,14 +1,15 @@
 import firebase from "firebase/app";
 import "firebase/firebase-firestore";
 import "firebase/auth";
+import fb from "../firebase";
 
 var config = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.DOMAIN,
-  databaseURL: process.env.DB_URL,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BKT,
-  messagingSenderId: process.env.SENDER_ID
+  apiKey: fb.API_KEY,
+  authDomain: fb.DOMAIN,
+  databaseURL: fb.DB_URL,
+  projectId: fb.projectId,
+  storageBucket: fb.STORAGE_BKT,
+  messagingSenderId: fb.SENDER_ID
 };
 firebase.initializeApp(config);
 firebase.firestore().settings({ timestampsInSnapshots: true });

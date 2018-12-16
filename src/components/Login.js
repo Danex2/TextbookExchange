@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../css/Login.css";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import CheckAuth from "../HOC/CheckAuth";
+import { compose } from "redux";
 
 class Login extends Component {
   state = {
@@ -60,14 +62,10 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    auth: state.firebase.auth
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default compose(
+  connect(
+    null,
+    { login }
+  ),
+  CheckAuth(Login)
+);
