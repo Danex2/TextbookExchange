@@ -21,7 +21,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route exact path="/" component={Listings} />
-              <Route path="/post" component={Post} />
+              <PrivateRoute path="/post" component={Post} />
               <PrivateRoute path="/dashboard" component={Dashboard} />
             </React.Fragment>
           </Suspense>

@@ -35,6 +35,7 @@ class Login extends Component {
               aria-describedby="emailHelp"
               placeholder="Enter email"
               onChange={this.handleInput}
+              autoComplete="off"
             />
             <small id="emailHelp" className="form-text text-muted">
               Your email will never be shared with anyone else.

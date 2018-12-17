@@ -5,19 +5,34 @@ class Register extends Component {
   state = {
     email: "",
     password: "",
-    password2: ""
+    password2: "",
+    error: null
   };
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmit = e => {
+    const { password, password2 } = this.state;
     e.preventDefault();
+    //check if passwords match
+    if (password !== password2) {
+      this.setState({ error: "Passwords do not match." });
+    }
     // send data to api
   };
   render() {
     return (
       <div className="grid-container">
-        <form className="container grid-item">
+        <form
+          action="post"
+          className="container grid-item"
+          onSubmit={this.onSubmit}
+        >
+          {this.state.error ? (
+            <div class="alert alert-danger" role="alert">
+              {this.state.error}
+            </div>
+          ) : null}
           <h1 className="text-center">
             Textbook Exchange{" "}
             <span role="img" aria-label="Book emoji">
