@@ -1,7 +1,9 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../actions/auth";
 
-const Authed = () => (
+const Authed = props => (
   <ul className="navbar-nav">
     <li className="nav-item">
       <Link to="/post" className="nav-link">
@@ -9,11 +11,14 @@ const Authed = () => (
       </Link>
     </li>
     <li className="nav-item">
-      <Redirect to="/" className="nav-link">
-        Signout
-      </Redirect>
+      <a className="nav-link" onClick={props.logout}>
+        Logout
+      </a>
     </li>
   </ul>
 );
 
-export default Authed;
+export default connect(
+  null,
+  { logout }
+)(Authed);

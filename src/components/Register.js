@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../css/Login.css";
-import CheckAuth from "../HOC/CheckAuth";
 
 class Register extends Component {
   state = {
@@ -72,4 +71,4 @@ class Register extends Component {
   }
 }
 
-export default CheckAuth(Register);
+export default Register;

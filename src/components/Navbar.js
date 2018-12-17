@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Authed from "../Links/Authed";
 import Anon from "../Links/Anon";
+import { connect } from "react-redux";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/" className="navbar-brand">
@@ -30,12 +31,17 @@ function Navbar() {
               Listings
             </Link>
           </li>
-          <Authed />
-          <Anon />
+          {props.auth.isEmpty === true ? <Anon /> : <Authed />}
         </ul>
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
