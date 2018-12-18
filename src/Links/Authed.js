@@ -16,9 +16,9 @@ const Authed = props => (
       </Link>
     </li>
     <li className="nav-item">
-      <a className="nav-link" onClick={props.logout}>
+      <Link to="/" className="nav-link" onClick={props.logout}>
         Logout
-      </a>
+      </Link>
     </li>
   </ul>
 );

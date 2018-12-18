@@ -4,10 +4,10 @@ const init = {
 
 const authReducer = (state = init, action) => {
   switch (action.type) {
-    case "FAILED_LOGIN":
+    case "LOGIN_ERROR":
       return {
         ...state,
-        success: "Login error"
+        success: "Invalid username or password."
       };
     case "LOGIN_SUCCESS":
       return {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/Login.css";
+import Verify from "../HOC/Verify";
 
 class Register extends Component {
   state = {
@@ -86,4 +87,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default Verify(Register);

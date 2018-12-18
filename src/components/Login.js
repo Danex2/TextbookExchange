@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../css/Login.css";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import { compose } from "redux";
+import Verify from "../HOC/Verify";
 
 class Login extends Component {
   state = {
@@ -16,9 +18,15 @@ class Login extends Component {
     this.props.login(this.state);
   };
   render() {
+    const { error } = this.props;
     return (
       <div className="grid-container">
         <form className="container grid-item" onSubmit={this.onSubmit}>
+          {error ? (
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          ) : null}
           <h1 className="text-center">
             Textbook Exchange{" "}
             <span role="img" aria-label="Book emoji">
@@ -64,11 +72,15 @@ class Login extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    error: state.auth.success
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { login }
+export default compose(
+  connect(
+    mapStateToProps,
+    { login }
+  ),
+  Verify
 )(Login);
