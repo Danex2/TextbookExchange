@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "../css/Login.css";
 import Verify from "../HOC/Verify";
+import { signUp } from "../actions/auth";
+import { compose } from "redux";
+import { connect } from "react-redux";
 
 class Register extends Component {
   state = {
@@ -13,15 +16,24 @@ class Register extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmit = e => {
-    const { password, password2 } = this.state;
+    const { password, password2, email } = this.state;
     e.preventDefault();
     //check if passwords match
     if (password !== password2) {
       this.setState({ error: "Passwords do not match." });
+    } else if (this.props.error) {
+      this.setState({ error: this.props.error });
+    } else {
+      let newUser = {
+        email,
+        password
+      };
+      this.props.signUp(newUser);
     }
-    // send data to api
   };
   render() {
+    const { error } = this.state;
+    console.log(error);
     return (
       <div className="grid-container">
         <form
@@ -29,9 +41,9 @@ class Register extends Component {
           className="container grid-item"
           onSubmit={this.onSubmit}
         >
-          {this.state.error ? (
-            <div class="alert alert-danger" role="alert">
-              {this.state.error}
+          {error ? (
+            <div className="alert alert-danger" role="alert">
+              {error}
             </div>
           ) : null}
           <h1 className="text-center">
@@ -71,7 +83,7 @@ class Register extends Component {
             <label htmlFor="exampleInputPassword1">Verify Password</label>
             <input
               type="password"
-              name="password"
+              name="password2"
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
@@ -87,4 +99,16 @@ class Register extends Component {
   }
 }
 
-export default Verify(Register);
+const mapStateToProps = state => {
+  return {
+    error: state.auth.success
+  };
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    { signUp }
+  ),
+  Verify
+)(Register);
