@@ -15,7 +15,8 @@ const posts = [
     author: "Some science guy",
     category: "Science",
     condition: "New",
-    price: "$300.00"
+    price: "$300.00",
+    imgURL: "https://somewebsite.com"
   },
   {
     id: 3,
@@ -23,7 +24,8 @@ const posts = [
     author: "Some science guy",
     category: "Science",
     condition: "New",
-    price: "$300.00"
+    price: "$300.00",
+    imgURL: "https://somewebsite.com"
   },
   {
     id: 4,
@@ -31,7 +33,8 @@ const posts = [
     author: "Some science guy",
     category: "Science",
     condition: "New",
-    price: "$300.00"
+    price: "$300.00",
+    imgURL: "https://somewebsite.com"
   },
   {
     id: 5,
@@ -39,16 +42,19 @@ const posts = [
     author: "Some science guy",
     category: "Science",
     condition: "New",
-    price: "$300.00"
+    price: "$300.00",
+    imgURL: "https://somewebsite.com"
   }
 ];
 
 class Listings extends Component {
   render() {
     return (
-      <div>
-        <p>listings component</p>
-      </div>
+      <React.Fragment>
+        {posts.map(post => {
+          return <div>{post.title}</div>;
+        })}
+      </React.Fragment>
     );
   }
 }
