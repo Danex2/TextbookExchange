@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../css/Listings.css";
 
 const posts = [
   {
@@ -7,7 +8,8 @@ const posts = [
     author: "Some science guy",
     category: "Science",
     condition: "New",
-    price: "$300.00"
+    price: "$300.00",
+    imgURL: "https://via.placeholder.com/50"
   },
   {
     id: 2,
@@ -16,7 +18,7 @@ const posts = [
     category: "Science",
     condition: "New",
     price: "$300.00",
-    imgURL: "https://somewebsite.com"
+    imgURL: "https://via.placeholder.com/150"
   },
   {
     id: 3,
@@ -25,7 +27,7 @@ const posts = [
     category: "Science",
     condition: "New",
     price: "$300.00",
-    imgURL: "https://somewebsite.com"
+    imgURL: "https://via.placeholder.com/150"
   },
   {
     id: 4,
@@ -34,7 +36,7 @@ const posts = [
     category: "Science",
     condition: "New",
     price: "$300.00",
-    imgURL: "https://somewebsite.com"
+    imgURL: "https://via.placeholder.com/150"
   },
   {
     id: 5,
@@ -43,18 +45,28 @@ const posts = [
     category: "Science",
     condition: "New",
     price: "$300.00",
-    imgURL: "https://somewebsite.com"
+    imgURL: "https://via.placeholder.com/150"
   }
 ];
 
 class Listings extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="card-grid">
         {posts.map(post => {
-          return <div>{post.title}</div>;
+          return (
+            <div key={post.id} className="card card-item">
+              <img src={post.imgURL} className="card-img-top" alt="..." />
+              <div className="card-body">
+                <h5 className="card-title">{post.title}</h5>
+                <p className="card-text">Price: {post.price}</p>
+                <p className="card-text">Condition: {post.condition}</p>
+                <button className="btn btn-primary">Go somewhere</button>
+              </div>
+            </div>
+          );
         })}
-      </React.Fragment>
+      </div>
     );
   }
 }
