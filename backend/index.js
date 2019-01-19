@@ -10,7 +10,7 @@ app.use(json());
 
 app.post("/post", async (req, res) => {
   try {
-    const post = await Post.updateOne(
+    const post = await Post.findOneAndUpdate(
       { email: req.body.email },
       {
         $push: {
