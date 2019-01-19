@@ -13,7 +13,8 @@ const postSchema = new mongoose.Schema({
       condition: String,
       currency: String,
       price: Number,
-      url: String
+      url: String,
+      postedAt: Date
     }
   ]
 });

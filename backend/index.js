@@ -21,13 +21,32 @@ app.post("/post", async (req, res) => {
             condition: req.body.condition,
             currency: req.body.currency,
             price: req.body.price,
-            url: req.body.url
+            url: req.body.url,
+            postedAt: new Date()
           }
         }
       },
       { upsert: true, new: true }
     );
     res.status(201).json(post);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+app.get("/dashboard", async (req, res) => {
+  try {
+    const dash = await Post.findOne({ email: req.body.email }).exec();
+    res.status(200).json(dash);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+app.get("/posts", async (req, res) => {
+  try {
+    const allPosts = await Post.find({}).exec();
+    res.status(200).json(allPosts);
   } catch (e) {
     res.send(e);
   }
