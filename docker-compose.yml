@@ -1,0 +1,27 @@
+version: "3"
+services:
+  client:
+    container_name: app_front
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/client
+    links:
+      - app
+  app:
+    container_name: express_app
+    restart: always
+    build: ./backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/usr/src/app
+    links:
+      - expressdb
+  expressdb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"

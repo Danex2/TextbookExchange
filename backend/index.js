@@ -54,9 +54,9 @@ app.get("/posts", async (req, res) => {
 
 mongoose
   .connect(
-    "mongodb://localhost:27017/posts",
+    "mongodb://expressdb:27017/posts",
     { useNewUrlParser: true }
   )
-  .then(connect => {
+  .then(() => {
     app.listen(4000, () => console.log("Server running on port: 4000."));
   });
