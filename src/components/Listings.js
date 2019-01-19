@@ -9,7 +9,7 @@ const posts = [
     category: "Science",
     condition: "New",
     price: "$300.00",
-    imgURL: "https://via.placeholder.com/50"
+    imgURL: "https://via.placeholder.com/150"
   },
   {
     id: 2,
