@@ -34,7 +34,7 @@ app.post("/post", async (req, res) => {
   }
 });
 
-app.get("/dashboard", async (req, res) => {
+app.post("/dashboard", async (req, res) => {
   try {
     const dash = await Post.findOne({ email: req.body.email }).exec();
     res.status(200).json(dash);
