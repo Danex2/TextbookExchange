@@ -53,10 +53,7 @@ app.get("/posts", async (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb://expressdb:27017/posts",
-    { useNewUrlParser: true }
-  )
+  .connect("mongodb://localhost:27017/posts", { useNewUrlParser: true })
   .then(() => {
     app.listen(4000, () => console.log("Server running on port: 4000."));
   });
