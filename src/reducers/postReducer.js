@@ -1,16 +1,19 @@
 const init = {
   success: null,
-  data: []
+  dashboardData: [],
+  listingData: []
 };
 
 const postReducer = (state = init, action) => {
   switch (action.type) {
     case "DASHBOARD_POSTS":
-      return {
-        ...state,
-        data: [...state.data, action.data],
-        success: null
-      };
+      return Object.assign({}, state, {
+        dashboardData: action.data
+      });
+    case "LISTING_POSTS":
+      return Object.assign({}, state, {
+        listingData: action.data
+      });
     default:
       return state;
   }

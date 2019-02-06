@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "../css/Listings.css";
+import { connect } from "react-redux";
+import { getListings } from "../actions/post";
 
 const posts = [
   {
@@ -50,6 +52,9 @@ const posts = [
 ];
 
 class Listings extends Component {
+  componentDidMount() {
+    this.props.getListings();
+  }
   render() {
     return (
       <div className="card-grid">
@@ -71,4 +76,14 @@ class Listings extends Component {
   }
 }
 
-export default Listings;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    listings: state.post.listingData
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getListings }
+)(Listings);

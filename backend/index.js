@@ -10,24 +10,19 @@ app.use(json());
 
 app.post("/post", async (req, res) => {
   try {
-    const post = await Post.findOneAndUpdate(
-      { email: req.body.email },
-      {
-        $push: {
-          posts: {
-            title: req.body.title,
-            author: req.body.author,
-            category: req.body.category,
-            condition: req.body.condition,
-            currency: req.body.currency,
-            price: req.body.price,
-            url: req.body.url,
-            postedAt: new Date()
-          }
-        }
-      },
-      { upsert: true, new: true }
-    );
+    let userPost = {
+      title: req.body.title,
+      author: req.body.author,
+      category: req.body.category,
+      condition: req.body.condition,
+      currency: req.body.currency,
+      price: req.body.price,
+      url: req.body.url,
+      postedBy: req.body.username,
+      contact: req.body.email,
+      postedAt: new Date()
+    };
+    const post = await Post.create(userPost);
     res.status(201).json(post);
   } catch (e) {
     res.send(e);
@@ -36,7 +31,7 @@ app.post("/post", async (req, res) => {
 
 app.post("/dashboard", async (req, res) => {
   try {
-    const dash = await Post.findOne({ email: req.body.email }).exec();
+    const dash = await Post.find({ contact: req.body.email }).exec();
     res.status(200).json(dash);
   } catch (e) {
     res.send(e);

@@ -8,13 +8,30 @@ export const getDashboardPosts = email => dispatch => {
     .then(res => {
       dispatch({
         type: "DASHBOARD_POSTS",
-        data: res
+        data: res.data
       });
     })
     .catch(e => {
       dispatch({
         type: "DASHBOARD_ERROR",
-        data: "There was an error fetching your dashboard."
+        data: e
+      });
+    });
+};
+
+export const getListings = () => dispatch => {
+  axios
+    .get("/posts")
+    .then(res => {
+      dispatch({
+        type: "LISTING_POSTS",
+        data: res.data
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: "LISTING_ERROR",
+        data: e
       });
     });
 };

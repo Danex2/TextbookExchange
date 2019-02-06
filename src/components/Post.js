@@ -19,7 +19,6 @@ class Post extends Component {
     // post method
   };
   render() {
-    console.log(this.state);
     return (
       <div className="form-container justify-content-center">
         <form method="post">
