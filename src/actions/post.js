@@ -35,3 +35,20 @@ export const getListings = () => dispatch => {
       });
     });
 };
+
+export const deletePost = id => dispatch => {
+  axios
+    .delete("/dashboard")
+    .then(res => {
+      dispatch({
+        type: "DELETE_POST",
+        data: id
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: "DELETE_ERROR",
+        data: e
+      });
+    });
+};

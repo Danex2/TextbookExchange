@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getDashboardPosts } from "../actions/post";
+import { getDashboardPosts, deletePost } from "../actions/post";
 import "../css/Listings.css";
 
 class Dashboard extends React.Component {
   componentDidMount() {
     this.props.getDashboardPosts(this.props.auth.email);
   }
+  onDeleteClick = id => {
+    this.props.deletePost(id);
+  };
   render() {
     return (
       <div>
@@ -26,7 +29,16 @@ class Dashboard extends React.Component {
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">Price: {post.price}</p>
                     <p className="card-text">Condition: {post.condition}</p>
-                    <button className="btn btn-danger">delete</button>
+                    <p className="card-text">Author: {post.author}</p>
+                    <p className="card-text">Category: {post.category}</p>
+                    <p className="card-text">Posted At: {post.postedAt}</p>
+                    <button
+                      className="btn btn-danger"
+                      type="button"
+                      onClick={() => this.onDeleteClick(post._id)}
+                    >
+                      delete
+                    </button>
                   </div>
                 </div>
               );
@@ -41,12 +53,12 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    posts: state.post.dashboardData.posts,
+    posts: state.post.dashboardData,
     auth: state.firebase.auth
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDashboardPosts }
+  { getDashboardPosts, deletePost }
 )(Dashboard);

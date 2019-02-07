@@ -14,6 +14,12 @@ const postReducer = (state = init, action) => {
       return Object.assign({}, state, {
         listingData: action.data
       });
+    case "DELETE_POST":
+      return Object.assign({}, state, {
+        dashboardData: state.dashboardData.filter(
+          dash => dash._id !== action.data
+        )
+      });
     default:
       return state;
   }

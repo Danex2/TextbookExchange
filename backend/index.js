@@ -47,6 +47,17 @@ app.get("/posts", async (req, res) => {
   }
 });
 
+app.delete("/dashboard", async (req, res) => {
+  try {
+    const deletePost = await Post.findByIdAndDelete({
+      _id: req.body.id
+    }).exec();
+    res.status(200).json(deletePost);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
 mongoose
   .connect("mongodb://localhost:27017/posts", { useNewUrlParser: true })
   .then(() => {
