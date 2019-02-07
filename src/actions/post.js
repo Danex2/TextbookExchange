@@ -38,7 +38,11 @@ export const getListings = () => dispatch => {
 
 export const deletePost = id => dispatch => {
   axios
-    .delete("/dashboard")
+    .delete("/dashboard", {
+      data: {
+        id
+      }
+    })
     .then(res => {
       dispatch({
         type: "DELETE_POST",
