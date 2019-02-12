@@ -60,6 +60,6 @@ app.delete("/dashboard", async (req, res) => {
 
 mongoose
   .connect("mongodb://localhost:27017/posts", { useNewUrlParser: true })
-  .then(() => {
-    app.listen(4000, () => console.log("Server running on port: 4000."));
-  });
+  .then(() => app.listen(4000, () => console.log("Listening on port: 4000")));
+
+module.exports = app;

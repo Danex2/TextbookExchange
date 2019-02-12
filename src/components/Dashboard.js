@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
                   <img
                     src="https://via.placeholder.com/150"
                     className="card-img-top"
-                    alt="..."
+                    alt="book"
                   />
                   <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
