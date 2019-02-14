@@ -20,6 +20,10 @@ const postReducer = (state = init, action) => {
           dash => dash._id !== action.data
         )
       });
+    case "NEW_POST":
+      return Object.assign({}, state, {
+        listingData: action.data
+      });
     default:
       return state;
   }

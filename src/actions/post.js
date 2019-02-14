@@ -56,3 +56,20 @@ export const deletePost = id => dispatch => {
       });
     });
 };
+
+export const newPost = post => dispatch => {
+  axios
+    .post("/post", post)
+    .then(post => {
+      dispatch({
+        type: "NEW_POST",
+        data: post
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: "POST_ERROR",
+        data: e
+      });
+    });
+};

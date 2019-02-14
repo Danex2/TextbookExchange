@@ -17,7 +17,7 @@ app.post("/post", async (req, res) => {
       condition: req.body.condition,
       currency: req.body.currency,
       price: req.body.price,
-      url: req.body.url,
+      image: req.body.image,
       postedBy: req.body.username,
       contact: req.body.email,
       postedAt: new Date()
